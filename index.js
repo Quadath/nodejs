@@ -1,4 +1,3 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path');
 
-console.log(process.env.argv)
+console.log(path.dirname);
