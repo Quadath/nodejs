@@ -1,13 +1,44 @@
 const path = require('path');
+const fs = require('fs');
 
 // console.log(__dirname);
-// console.log(path.join(__dirname, '..'));
+// fs.mkdirSync(path.resolve(__dirname, 'dir'));
 
-// console.log("Абсолютный путь", path.resolve('first', 'second', 'third')); 
-// const fullpath = path.resolve('first', 'second', 'third');
-// console.log('Парсинг пути', path.parse(fullpath))
+// fs.rmdir(path.resolve(__dirname, 'dir'), (err) => {
+//     if (err) {
+//         throw err;
+//     }
+// })
 
-//URL
-const siteURL = 'http://localhost:8888/users?id=5123'
-const url = new URL(siteURL);
-console.log(url);
+// fs.writeFile(path.resolve(__dirname, "test.txt"), "i like onion", (err) => {
+//     if (err) {
+//         throw err;
+//     }
+// })
+
+// fs.appendFile(path.resolve(__dirname, "test.txt"), "i like onion", (err) => {
+//     if (err) {
+//         throw err;
+//     }
+// })
+
+const writeFileAsync = async = (path, data) => {
+    return new Promise((resolve, reject) => fs.writeFile(path, data, (err) => {
+        if (err) {
+            return err;
+        }
+        resolve();
+    }))
+}
+const appendFileAsync = async = (path, data) => {
+    return new Promise((resolve, reject) => fs.appendFile(path, data, (err) => {
+        if (err) {
+            return err;
+        }
+        resolve();
+    }))
+}
+//PROMISES
+writeFileAsync(path.resolve(__dirname, 'test.txt'), 'first')
+    .then((appendFileAsync(path.resolve(__dirname, 'test.txt'), 'second')))
+    .then((appendFileAsync(path.resolve(__dirname, 'test.txt'), 'third')))
